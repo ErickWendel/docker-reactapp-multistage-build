@@ -1,0 +1,16 @@
+FROM node:10-alpine
+
+WORKDIR /src
+
+COPY package.json package-lock.json ./
+
+RUN npm i -g http-server
+
+RUN npm i --silent
+
+COPY . ./
+
+RUN npm run build
+
+CMD http-server -p 80 build/
+
